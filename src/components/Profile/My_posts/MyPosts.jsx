@@ -1,7 +1,9 @@
 import React from 'react';
 import my_posts_style from './MyPosts.module.css';
-import Post from './Post/Post'
-const MyPosts = () => {
+import Post from './Post/Post' 
+
+const MyPosts = (props) => { 
+  let arrPost=props.posts.map((el)=>(<Post post={el.post} likes={el.likes} key={el.id}/>));
   return <div className={my_posts_style.content}>
     <div>
       ava+descrip
@@ -9,11 +11,11 @@ const MyPosts = () => {
     <div>
       MY POSTS
       <div>
-      <textarea name="" id="" cols="30" rows="10"></textarea>
+      <textarea name="" id="" cols="10" rows="1"></textarea>
        <button>Add Post</button>
       </div>
       <div className={my_posts_style.posts}>
-        <Post messege={'hi, my bro'} likes='5'/>
+        {arrPost}
       </div>
     </div>
   </div>
