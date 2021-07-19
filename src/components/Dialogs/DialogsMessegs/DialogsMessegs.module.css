@@ -1,0 +1,14 @@
+.avatar{
+    width: 50px;
+    border-radius: 25px;
+}
+
+.messege{
+    display: grid;
+    grid-template-columns:repeat(2,auto);
+    grid-template-rows: 1fr;
+    background-color: chocolate;
+    border-radius: 25px;
+    align-items: center;
+    margin: 20px;
+}
