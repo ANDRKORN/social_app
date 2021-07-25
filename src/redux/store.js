@@ -1,11 +1,6 @@
-const ADD_POST='ADD-POST';
-const UPDATE_TEXT_NEW_POST='UPDATE-TEXT-NEW-POST';
-const UPDATE_TEXT_MESSAGE='UDATE-TEXT-MESSAGE';
-const ADD_MESSAGE='ADD-MESSAGE';
-export const actionCreatorAddPost=()=>{return {type:ADD_POST}};
-export const actionCreatorUpdateTextNewPost=(text)=>{return{type:UPDATE_TEXT_NEW_POST,newTextPost:text}}
-export const actionCreatorUpdateTextMessage=(text)=>{return{type:UPDATE_TEXT_MESSAGE,newTextMessage:text}}
-export const actionCreatorAddMessage=()=>{return{type:ADD_MESSAGE}}
+import dialogsPageReducer from "./dialogs-reduce";
+import profilePageReducer from "./profile-reduce";
+
 let store = {
   _state: {
     profilePage: {
@@ -34,7 +29,7 @@ let store = {
       ],
     },
     dialogsPage: {
-      textMessage:'',
+      textMessage: '',
       messegeItems: [
         {
           messege: 'hi',
@@ -76,55 +71,21 @@ let store = {
   _rerenderEntireTree() {
     console.log('state changed');
   },
+  
   dispatch(action) {
-    if(action.type===ADD_POST){
-      let newPost = {
-        post: this.getState().profilePage.textPost,
-        likes: 0,
-        id: (this.getState().profilePage.posts.length),
-      }
-      this.getState().profilePage.textPost = '';
-      this.getState().profilePage.posts.push(newPost);
-      this._rerenderEntireTree(this.getState());
-    }else if(action.type===UPDATE_TEXT_NEW_POST){     
-      this.getState().profilePage.textPost = action.newTextPost;
-      this._rerenderEntireTree(this.getState())
-    }else if(action.type===UPDATE_TEXT_MESSAGE){     
-        this.getState().dialogsPage.textMessage = action.newTextMessage;
-        this._rerenderEntireTree(this.getState())
-    }else if(action.type==='ADD-MESSAGE') {
-      let newMessage={
-        messege: this._state.dialogsPage.textMessage,
-        id: this._state.dialogsPage.messegeItems.length,
-      };
-      this._state.dialogsPage.messegeItems.push(newMessage);
-      this._rerenderEntireTree(this.getState())
-    }    
+    this._state.profilePage=profilePageReducer(this._state.profilePage, action);
+    this._state.dialogsPage=dialogsPageReducer(this._state.dialogsPage, action);
+    this._rerenderEntireTree(this._state);
   },
 
   getState() {
     return this._state;
   },
-  
+
   subscribe(observer) {
     this._rerenderEntireTree = observer;
   },
 
 };
-export default store;
-window.store=store;
-//old used metods
-/* addPost() {
-    let newPost = {
-      post: this.getState().profilePage.textPost,
-      likes: 0,
-      id: (this.getState().profilePage.posts.length),
-    }
-    this.getState().profilePage.textPost = '';
-    this.getState().profilePage.posts.push(newPost);
-    this._rerenderEntireTree(this.getState());
-  }, */
- /*  updateTextNewPost(newTextPost) {
-    this.getState().profilePage.textPost = newTextPost;
-    this._rerenderEntireTree(this.getState())
-  }, */
+
+window.store = store;

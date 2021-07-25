@@ -1,5 +1,4 @@
 import React from 'react';
-import { actionCreatorAddPost, actionCreatorUpdateTextNewPost } from '../../../redux/store';
 import my_posts_style from './MyPosts.module.css';
 import Post from './Post/Post'
 
@@ -8,13 +7,12 @@ const MyPosts = (props) => {
   let newText = React.createRef();
 
   const newPost = () => {
-    /* let newTextPost = newText.current.value; */
-    props.dispatch(actionCreatorAddPost());
+    props.newPostContainer();
   }
 
-  const upNewTextPost = () => {   
-    let newTextPost = newText.current.value; 
-    props.dispatch(actionCreatorUpdateTextNewPost(newTextPost));    
+  const upNewTextPost = () => {
+    let newTextPost = newText.current.value;
+    props.onPostChange(newTextPost);
   }
 
   return <div className={my_posts_style.content}>
@@ -24,7 +22,8 @@ const MyPosts = (props) => {
     <div>
       MY POSTS
       <div>
-        <textarea name="" id="" cols="10" rows="1" ref={newText} onChange={upNewTextPost} value={props.textPost} />
+        <textarea name="" id="" cols="10" rows="1" ref={newText} onChange={upNewTextPost}
+          value={props.newTextPost} />
         <button onClick={newPost}>Add Post</button>
       </div>
       <div className={my_posts_style.posts}>

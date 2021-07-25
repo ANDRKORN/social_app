@@ -4,7 +4,7 @@ import './App.css';
 import Header from './components/Header/Header';
 import Navbar from './components/Navbar/Navbar';
 import Profile from './components/Profile/Profile';
-import Dialogs from './components/Dialogs/Dialogs'
+import DialogsContainer from './components/Dialogs/DialogsContainer';
 
 const App = (props) => {
   return (
@@ -13,17 +13,11 @@ const App = (props) => {
       <Navbar />
       <Route path='/profile' render={() =>
         <Profile
-          posts={props.store.profilePage.posts}
-          textPost={props.store.profilePage.textPost}
-          dispatch={props.dispatch}
+          store={props.store}          
         />}
       />
       <Route path='/dialogs' render={() =>
-        <Dialogs
-          dispatch={props.dispatch}
-          messegeItems={props.store.dialogsPage.messegeItems}
-          dialogItems={props.store.dialogsPage.dialogItems}
-        />} />
+        <DialogsContainer   store={props.store}/>} />
     </div>
   );
 }
