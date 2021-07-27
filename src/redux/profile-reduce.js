@@ -36,7 +36,7 @@ let initialState= {
         id: (state.posts.length),
       }
       state.textPost = '';
-      state.posts.push(newPost);
+      state.posts.unshift(newPost);
       return state;
     case UPDATE_TEXT_NEW_POST:
       state.textPost = action.newTextPost;

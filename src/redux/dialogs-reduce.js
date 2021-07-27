@@ -41,6 +41,7 @@ let initialState= {
   ],
 };
 const dialogsPageReducer = (state=initialState, action) => {
+  
   switch (action.type) {
     case UPDATE_TEXT_MESSAGE:
       state.textMessage = action.newTextMessage;
