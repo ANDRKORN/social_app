@@ -1,7 +1,7 @@
 const UPDATE_TEXT_MESSAGE = 'UDATE-TEXT-MESSAGE';
 const ADD_MESSAGE = 'ADD-MESSAGE';
 
-let initialState= {
+let initialState = {
   textMessage: '',
   messegeItems: [
     {
@@ -40,26 +40,32 @@ let initialState= {
     },
   ],
 };
-const dialogsPageReducer = (state=initialState, action) => {
-  
+const dialogsPageReducer = (state = initialState, action) => {
   switch (action.type) {
     case UPDATE_TEXT_MESSAGE:
-      state.textMessage = action.newTextMessage;
-      return state;
-    case ADD_MESSAGE:
-      let newMessage = {
-        messege: state.textMessage,
-        id: state.messegeItems.length,
+      return{
+        ...state,
+        textMessage: action.newTextMessage,
       };
-      state.messegeItems.push(newMessage);
-      state.textMessage = '';
-      debugger
-      return state;
+       
+    case ADD_MESSAGE:  
+      let messegeItems={...state.messegeItems}
+      let textMessage=state.textMessage;
+      return  {
+        ...state,
+        messegeItems: [                  
+          ...state.messegeItems ,
+          {
+            messege: textMessage,
+            id: messegeItems.length,
+          }
+        ],
+        textMessage:'',
+      };
     default:
       return state;
-  }  
+  }
 };
-
 export const actionCreatorUpdateTextMessage = (text) => { return { type: UPDATE_TEXT_MESSAGE, newTextMessage: text } }
 export const actionCreatorAddMessage = () => { return { type: ADD_MESSAGE } }
 

@@ -1,7 +1,7 @@
 const ADD_POST = 'ADD-POST';
 const UPDATE_TEXT_NEW_POST = 'UPDATE-TEXT-NEW-POST';
 
-let initialState= {  
+let initialState = {
   textPost: '',
   posts: [
     {
@@ -27,20 +27,28 @@ let initialState= {
   ],
 };
 
- const profilePageReducer = (state=initialState, action) => {
+const profilePageReducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_POST:
-      let newPost = {
-        post: state.textPost,
-        likes: 0,
-        id: (state.posts.length),
-      }
-      state.textPost = '';
-      state.posts.unshift(newPost);
-      return state;
+      let textPost=state.textPost;
+      let posts={...state.post}
+      return {
+        ...state,
+        posts: [
+          {
+            post: textPost,
+            likes: 0,
+            id: posts.lenght,
+          },
+          ...state.posts,          
+        ],
+        textPost: '',
+      };
     case UPDATE_TEXT_NEW_POST:
-      state.textPost = action.newTextPost;
-      return state;
+      return {
+        ...state,
+        textPost: action.newTextPost,
+      }       
     default:
       return state;
   }
