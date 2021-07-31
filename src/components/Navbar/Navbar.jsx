@@ -20,6 +20,9 @@ const Navbar = (props) => {
         <div>
             <a> Settings</a> 
         </div>
+        <div style={{marginTop: 30 + 'px'}}>
+            <NavLink to='/find_users'>Find Users</NavLink>
+        </div>
         <FriendsBar/>
     </nav>
 }

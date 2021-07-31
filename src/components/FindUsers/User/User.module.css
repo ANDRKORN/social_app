@@ -1,0 +1,39 @@
+.user_block_avatar img{
+  width: 50px;
+  border-radius: 25px;
+}
+
+.user_block{
+  width: 300px;
+  border: 1px solid black;
+  border-radius: 10px;
+  margin:20px;
+  display:grid;
+  place-items: center;
+  grid-template-columns: 50px auto;
+
+}
+.user_block_avatar{
+  margin-left: 20px;
+  grid-area: 'ava';
+}
+
+.user_block_info{
+  display: grid;
+  border: 1px solid black;
+  border-radius: 10px;
+ grid-template-areas: 
+ 'n c'
+ 's s'
+ ;
+ justify-content: stretch;
+}
+.nameUser{
+  grid-area: 'n';
+}
+.country{
+  grid-area:'c';
+}
+.statusUser{
+  grid-area: 's';
+}
