@@ -2,52 +2,7 @@ const FOLLOW = 'FOLLOW';
 const UNFOLLOW = 'UNFOLLOW';
 const SET_USERS='SET_USERS';
 let initialState = {
-    users: [
-        {
-            nameUser: 'Dima',            
-            location:{
-               city: 'Rostov-on-Don',
-            country: 'Russia',
-            },
-            status: 'learn React',             
-            avatarUser: 'https://berserkon.com/images/avatar-vector.png',
-            id: 0,
-            followed:true,
-        },
-        {
-            nameUser: 'Liza',
-            location:{
-                city: 'Rostov-on-Don',
-             country: 'Russia',
-             },
-            status: 'learn Design',
-            avatarUser: 'https://berserkon.com/images/avatar-vector.png',
-            id: 1,
-            followed:true,
-        },
-        {
-            nameUser: 'Dima',
-            location:{
-                city: 'Rostov-on-Don',
-             country: 'Russia',
-             },
-            status: 'learn it',
-            avatarUser: "https://berserkon.com/images/avatar-vector.png",
-            id: 2,
-            followed:false,
-        },
-        {
-            nameUser: 'Leha',
-            location:{
-                city: 'Rostov-on-Don',
-             country: 'Russia',
-             },
-            status: 'good day',
-            avatarUser: "https://berserkon.com/images/avatar-vector.png",
-            id: 3,
-            followed:true,
-        },
-    ],
+    users: [],
 };
 
 const findUserPageReducer = (state = initialState, action) => {
@@ -81,6 +36,6 @@ const findUserPageReducer = (state = initialState, action) => {
 
 export const actionCreatorFollow = (userID) => { return { type: FOLLOW,userID }};
 export const actionCreatorUnfollow = (userID) => { return { type: UNFOLLOW,userID }};
-export const actionCreatorSetUsers = (userID) => { return { type: SET_USERS}}
-
+export const actionCreatorSetUsers = (users) => { return { type: SET_USERS,users:users}}
+ 
 export default findUserPageReducer;

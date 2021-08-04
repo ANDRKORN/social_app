@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { actionCreatorFollow, actionCreatorSetUsers, actionCreatorUnfollow } from '../../redux/findUser-reducer';
 import FindUsers from './FindUsers';
+
 let mapStateToProps = (state) => {
     return {
         users: state.findUsersPage.users
@@ -15,7 +16,7 @@ let mapDispatchToProps = (dispatch) => {
         unFollow:(userID)=>{
             dispatch(actionCreatorUnfollow(userID));
         },
-        setUsres:(users)=>{
+        setUsers:(users)=>{
             dispatch(actionCreatorSetUsers(users));
         },
     }
