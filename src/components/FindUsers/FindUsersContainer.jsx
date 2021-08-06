@@ -1,11 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { actionCreatorFollow, actionCreatorSetUsers, actionCreatorUnfollow } from '../../redux/findUser-reducer';
+import { actionCreatorFollow, actionCreatorSetAllUsers, actionCreatorSetCount, actionCreatorSetCountPage, actionCreatorSetUsers, actionCreatorUnfollow } from '../../redux/findUser-reducer';
 import FindUsers from './FindUsers';
 
 let mapStateToProps = (state) => {
     return {
-        users: state.findUsersPage.users
+        users: state.findUsersPage.users,
+        count: state.findUsersPage.count,
+        allUsers: state.findUsersPage.allUsers,
+        countPage: state.findUsersPage.countPage
     }
 }
 let mapDispatchToProps = (dispatch) => {
@@ -19,6 +22,15 @@ let mapDispatchToProps = (dispatch) => {
         setUsers:(users)=>{
             dispatch(actionCreatorSetUsers(users));
         },
+        setCount:(count)=>{
+            dispatch(actionCreatorSetCount(count));
+        },
+        setCountPage:(countPage)=>{
+            dispatch(actionCreatorSetCountPage(countPage));
+        },
+        setAllUsers:(allUsers)=>{
+            dispatch(actionCreatorSetAllUsers(allUsers));
+        }
     }
 }
 
