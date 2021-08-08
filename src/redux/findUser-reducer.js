@@ -4,12 +4,14 @@ const SET_USERS='SET_USERS';
 const SET_COUNT='SET_COUNT';
 const SET_COUNT_PAGE='SET_COUNT_PAGE';
 const SET_ALL_USERS='SET_ALL_USERS';
+const TOGGLE_IS_FETCHING='TOGGLE_IS_FETCHING';
 
 let initialState = {
     users: [],
     count:5,
     countPage:1,
     allUsers:0,
+    isFetching: true,
 };
 
 const findUserPageReducer = (state = initialState, action) => {
@@ -42,6 +44,8 @@ const findUserPageReducer = (state = initialState, action) => {
              return{...state,allUsers:action.allUsers}
         case SET_COUNT_PAGE:
             return{...state,countPage:action.countPage}
+        case TOGGLE_IS_FETCHING:
+            return{...state,isFetching:action.isFetching}
         default:           
             return state;
     }
@@ -56,6 +60,8 @@ export const actionCreatorSetAllUsers = (allUsers) => { return { type: SET_ALL_U
 export const actionCreatorSetCount = (count) => { return { type: SET_COUNT,count:count}}
  
 export const actionCreatorSetCountPage = (countPage) => { return { type: SET_COUNT_PAGE,countPage:countPage}}
+ 
+export const actionCreatorSetToggleIsFetching = (isFetching) => { return { type: TOGGLE_IS_FETCHING,isFetching}}
  
  
 export default findUserPageReducer;
