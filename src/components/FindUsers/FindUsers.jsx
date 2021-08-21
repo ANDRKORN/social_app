@@ -2,6 +2,7 @@ import React from "react";
 import User from "./User/User";
 import * as axios from "axios";
 import styles from "./FindUsers.module.css";
+import Loader from "../LoaderGif/Loader.jsx";
 
 class FindUsers extends React.Component {
   componentDidMount() {
@@ -30,16 +31,29 @@ class FindUsers extends React.Component {
   };
 
   render() {
-    let pagesCount = Math.ceil(this.props.allUsers / this.props.count);
     let max = 20;
+    let min = 1;
+    let pagesCount = Math.ceil(this.props.allUsers / this.props.count);
     let pages = [];
-    for (let i = 1; i <= pagesCount; i++) {
+    for (let i = min; i <= pagesCount; i++) {
       if (i < max) {
         pages.push(i);
       }
     }
-
+    pages.push("...");
     let newPages = pages.map((p) => {
+      if (p === "...") {
+        return (
+          <span
+            onClick={(e) => {
+              
+            }}
+          >
+            {" "}
+            {p}{" "}
+          </span>
+        );
+      }
       return (
         <span
           className={this.props.countPage === p && styles.selectedPage}
@@ -71,23 +85,11 @@ class FindUsers extends React.Component {
         status={u.status}
       />
     ));
-
     return (
       <div>
         Users
         <div>{newPages}</div>
-        <div>
-          {this.props.isFetching ? (
-            <img
-              alt=""
-              src={
-                "https://pa1.narvii.com/7626/db294049eb37a27aaa65249cf205d7783beaef41r1-600-450_hq.gif"
-              }
-            />
-          ) : (
-            allUsers
-          )}
-        </div>
+        <div>{this.props.isFetching ? <Loader /> : allUsers}</div>
         <button>Show more</button>
       </div>
     );

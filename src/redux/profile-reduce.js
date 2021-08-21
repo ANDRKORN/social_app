@@ -1,7 +1,8 @@
 const ADD_POST = 'ADD-POST';
 const UPDATE_TEXT_NEW_POST = 'UPDATE-TEXT-NEW-POST';
-
+const SET_USER_PROFILE = 'SET_USER_PROFILE';
 let initialState = {
+  profile:null,
   textPost: '',
   posts: [
     {
@@ -48,6 +49,10 @@ const profilePageReducer = (state = initialState, action) => {
       return {
         ...state,
         textPost: action.newTextPost,
+      }
+    case SET_USER_PROFILE:
+      return{
+        ...state,profile:action.profile
       }       
     default:
       return state;
@@ -55,5 +60,7 @@ const profilePageReducer = (state = initialState, action) => {
 }
 export const actionCreatorAddPost = () => { return { type: ADD_POST } };
 export const actionCreatorUpdateTextNewPost = (text) => { return { type: UPDATE_TEXT_NEW_POST, newTextPost: text } }
+export const actionCreatorSetUserProfile = (profile) => { return { type: SET_USER_PROFILE, profile } }
+
 
 export default profilePageReducer;

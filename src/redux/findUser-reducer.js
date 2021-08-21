@@ -12,6 +12,7 @@ let initialState = {
     countPage:1,
     allUsers:0,
     isFetching: true,
+    
 };
 
 const findUserPageReducer = (state = initialState, action) => {
@@ -35,6 +36,7 @@ const findUserPageReducer = (state = initialState, action) => {
                 }
                 return u;
             })
+            /* only_1_taz */
         };    
         case SET_USERS:
             return{...state,users:[...action.users]}     

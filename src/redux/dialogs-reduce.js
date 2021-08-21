@@ -1,6 +1,5 @@
 const UPDATE_TEXT_MESSAGE = 'UDATE-TEXT-MESSAGE';
 const ADD_MESSAGE = 'ADD-MESSAGE';
-
 let initialState = {
   textMessage: '',
   messegeItems: [
@@ -49,15 +48,16 @@ const dialogsPageReducer = (state = initialState, action) => {
       };
        
     case ADD_MESSAGE:  
-      let messegeItems={...state.messegeItems}
+     
       let textMessage=state.textMessage;
+      debugger
       return  {
         ...state,
         messegeItems: [                  
           ...state.messegeItems ,
           {
             messege: textMessage,
-            id: messegeItems.length,
+            id: state.messegeItems.length,
           }
         ],
         textMessage:'',

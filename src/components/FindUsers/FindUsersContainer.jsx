@@ -14,30 +14,12 @@ let mapStateToProps = (state) => {
     }
 }
 
-let mapDispatchToProps = (dispatch) => {
-    return{
-        toggleIsFetching:(isFetching)=>{
-            dispatch(actionCreatorSetToggleIsFetching(isFetching));
-        },
-        follow:(userID)=>{
-            dispatch(actionCreatorFollow(userID));
-        },
-        unFollow:(userID)=>{
-            dispatch(actionCreatorUnfollow(userID));
-        },
-        setUsers:(users)=>{
-            dispatch(actionCreatorSetUsers(users));
-        },
-        setCount:(count)=>{
-            dispatch(actionCreatorSetCount(count));
-        },
-        setCountPage:(countPage)=>{
-            dispatch(actionCreatorSetCountPage(countPage));
-        },
-        setAllUsers:(allUsers)=>{
-            dispatch(actionCreatorSetAllUsers(allUsers));
-        }
-    }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(FindUsers);
+export default connect(mapStateToProps,{
+    toggleIsFetching:actionCreatorSetToggleIsFetching,
+    follow:actionCreatorFollow,
+    unFollow:actionCreatorUnfollow,
+    setUsers:actionCreatorSetUsers,
+    setCount:actionCreatorSetCount,
+    setCountPage:actionCreatorSetCountPage,
+    setAllUsers:actionCreatorSetAllUsers,
+} )(FindUsers);

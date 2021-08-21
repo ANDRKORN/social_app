@@ -6,7 +6,7 @@ import Dialog from './Dialogs';
 
 let mapStateToProps=(state)=>{
   return{
-   dialogsPage:state.dialogsPage
+   dialogsPage:state.dialogsPage,
   }
 };
 let mapDispachToProps=(dispatch)=>{

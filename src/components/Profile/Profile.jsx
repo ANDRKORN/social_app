@@ -1,11 +1,10 @@
 import React from 'react';
 import prof_style from './Profile.module.css';
 import MyPostsContainer from './My_posts/MyPostsContainer';
-const Profile = (props) => { 
+import ProfileInfo from './ProfileInfo/ProfileInfo';
+const Profile = (props) => {   
   return <div className={prof_style.content}>
-    <div>
-      <img alt='' src='https://images.pexels.com/photos/248797/pexels-photo-248797.jpeg?auto=compress&cs=tinysrgb&h=350' />
-    </div>
+    <ProfileInfo profile={props.profile}/>
     <MyPostsContainer/>
   </div>
 }

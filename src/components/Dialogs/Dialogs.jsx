@@ -4,8 +4,8 @@ import DialogsMessegs from './DialogsMessegs/DialogsMessegs'
 import DialogsItems from './DialogsItems/DialogsItems'
 
 class Dialog extends React.Component{  
-  arrDialogsItems = this.props.dialogsPage.dialogItems.map((el) => <DialogsItems name={el.name} key={el.id} />);
-  arrMessegeItems = this.props.dialogsPage.messegeItems.map((el) => <DialogsMessegs messege={el.messege} key={el.id} />);
+  
+  
   newTextMessege = React.createRef();
  updateTextMessege = () => {
     let textMessage = this.newTextMessege.current.value
@@ -16,15 +16,19 @@ class Dialog extends React.Component{
   }
   
   render(){
+
+   let arrDialogsItems = this.props.dialogsPage.dialogItems.map((el) => <DialogsItems name={el.name} key={el.id} />);
+    let arrMessegeItems = this.props.dialogsPage.messegeItems.map((el) => <DialogsMessegs messege={el.messege} key={el.id} />);
     console.log(this.props)
+    debugger
     return(
      <div className={dialogs_style.dialogs_block}>
       <div className={dialogs_style.dialogs_block__items}>
-        {this.arrDialogsItems}
+        {arrDialogsItems}
       </div>
       <div className={dialogs_style.dialogs_messege}>
         <div>
-          {this.arrMessegeItems}
+          {arrMessegeItems}
         </div>
         <div>
           <div>
