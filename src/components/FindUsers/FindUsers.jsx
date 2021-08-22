@@ -9,7 +9,10 @@ class FindUsers extends React.Component {
     this.props.toggleIsFetching(true);
     axios
       .get(
-        `https://social-network.samuraijs.com/api/1.0/users?page=${this.props.countPage}&count=${this.props.count}`
+        `https://social-network.samuraijs.com/api/1.0/users?page=${this.props.countPage}&count=${this.props.count}`,
+        {
+          withCredentials:true,
+        }
       )
       .then((respons) => {
         this.props.toggleIsFetching(false);
@@ -22,7 +25,10 @@ class FindUsers extends React.Component {
     this.props.toggleIsFetching(true);
     axios
       .get(
-        `https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.count}`
+        `https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.count}`,
+        {
+          withCredentials:true,
+        }
       )
       .then((response) => {
         this.props.setUsers(response.data.items);
@@ -56,13 +62,12 @@ class FindUsers extends React.Component {
       }
       return (
         <span
-          className={this.props.countPage === p && styles.selectedPage}
+          className={toString(this.props.countPage === p && styles.selectedPage)}
           onClick={(e) => {
             this.onPageChanged(p);
           }}
         >
-          {" "}
-          {p}{" "}
+          {" "}{p}{" "}
         </span>
       );
     });
