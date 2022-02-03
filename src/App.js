@@ -14,12 +14,11 @@ const App = (props) => {
       <HeaderContainer />
       <Navbar />
       <Route path='/profile/:userId?'
-       render={() =><ProfileContainer/>}
-      />
-      <Route path='/dialogs' 
-      render={() =><DialogsContainer/>}/>
-      <Route path='/find_users' 
-      render={()=><FindUsersContainer/>}/>
+        render={() => <ProfileContainer />} />
+      <Route path='/dialogs'
+        render={() => <DialogsContainer />} />
+      <Route path='/find_users'
+        render={() => <FindUsersContainer />} />
     </div>
   );
 }

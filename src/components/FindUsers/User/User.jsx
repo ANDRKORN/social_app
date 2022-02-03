@@ -15,11 +15,15 @@ const User = (props) => {
             <button
               onClick={() => {
                   axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${props.id}`,
-                  {withCredentials:true,
+                  {
+                    withCredentials:true,
                     headers:{'API-KEY':'3f114771-ad14-408c-b89f-34ff425f028f'}
                   }).then(response=>{
+                    console.log(response)
                       if(response.data.resultCode===0){
                           props.unfollow(props.id)
+                      } else if(response.data.response===1){
+                        props.unfollow(props.id)
                       }
                   })                
               }}

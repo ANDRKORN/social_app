@@ -47,8 +47,7 @@ const dialogsPageReducer = (state = initialState, action) => {
         textMessage: action.newTextMessage,
       };
        
-    case ADD_MESSAGE:  
-     
+    case ADD_MESSAGE:       
       let textMessage=state.textMessage;
       debugger
       return  {

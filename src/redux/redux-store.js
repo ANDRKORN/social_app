@@ -9,8 +9,7 @@ let redusers = combineReducers(
         profilePage: profilePageReducer,
         dialogsPage: dialogsPageReducer,
         findUsersPage:findUserPageReducer,
-        authUser:authReducer
-              
+        authUser:authReducer              
     }
 );
 

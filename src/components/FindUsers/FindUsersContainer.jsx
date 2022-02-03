@@ -11,6 +11,7 @@ let mapStateToProps = (state) => {
         allUsers: state.findUsersPage.allUsers,
         countPage: state.findUsersPage.countPage,
         isFetching: state.findUsersPage.isFetching,
+        selectPage: state.findUsersPage.selectPage,
     }
 }
 
