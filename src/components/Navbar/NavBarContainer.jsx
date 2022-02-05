@@ -1,7 +1,6 @@
 
 import { connect } from 'react-redux';
 import { actionCreatorSetFirstUsers} from '../../redux/navBar-reducer';
-import {actionCreatorSetUserProfile} from '../../redux/profile-reduce'
 import Navbar from './Navbar';
 
 let mapStateToProps = (state) => {   

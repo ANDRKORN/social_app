@@ -1,10 +1,14 @@
+import { usersAPI } from '../api/api'
+
 const ADD_POST = 'ADD-POST';
 const UPDATE_TEXT_NEW_POST = 'UPDATE-TEXT-NEW-POST';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
+const IS_LOAD = 'IS_LOAD';
 
 let initialState = {
-  profile:null,
+  profile: null,
   textPost: '',
+  isLoad: true,
   posts: [
     {
       post: 'hahaha',
@@ -32,8 +36,8 @@ let initialState = {
 const profilePageReducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_POST:
-      let textPost=state.textPost;
-      let posts={...state.post}
+      let textPost = state.textPost;
+      let posts = { ...state.post }
       return {
         ...state,
         posts: [
@@ -42,7 +46,7 @@ const profilePageReducer = (state = initialState, action) => {
             likes: 0,
             id: posts.lenght,
           },
-          ...state.posts,          
+          ...state.posts,
         ],
         textPost: '',
       };
@@ -52,16 +56,30 @@ const profilePageReducer = (state = initialState, action) => {
         textPost: action.newTextPost,
       }
     case SET_USER_PROFILE:
-      return{
-        ...state,profile:action.profile
-      }       
+      return {
+        ...state, profile: action.profile
+      }
+    case IS_LOAD:
+      return {
+        ...state, isLoad: action.isLoad
+      }
     default:
+
       return state;
   }
 }
 export const actionCreatorAddPost = () => { return { type: ADD_POST } };
 export const actionCreatorUpdateTextNewPost = (text) => { return { type: UPDATE_TEXT_NEW_POST, newTextPost: text } }
 export const actionCreatorSetUserProfile = (profile) => { return { type: SET_USER_PROFILE, profile } }
+export const actionCreatorIsLoad = (isLoad) => { return { type: IS_LOAD, isLoad } };
 
+export const getUsersThunkCreator = (userId) => (dispatch) => {
+  let userID = 2;
+  dispatch(actionCreatorIsLoad(true))
+  usersAPI.getInfoUser(!userId ? userID : userID = userId).then((respons) => {
+    dispatch(actionCreatorSetUserProfile(respons.data));
+    dispatch(actionCreatorIsLoad(false));
+  });
+}
 
 export default profilePageReducer;

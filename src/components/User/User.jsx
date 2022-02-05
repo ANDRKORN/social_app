@@ -5,6 +5,7 @@ import { usersAPI } from "../../api/api";
 import { useState } from "react";
 
 const User = (props) => {
+  console.log(props)
   const [followed, setState] = useState(props.followed)
   return (
     <div className={style_find_users.user_block}>

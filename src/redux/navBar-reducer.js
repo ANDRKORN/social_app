@@ -16,4 +16,7 @@ const navBarPageReducer = (state = initialState, action) => {
 
 export const actionCreatorSetFirstUsers = (users) => { return { type: SET_FIRST_USERS, users: users } }
 
+export const setUsersThunkCreator=()=>(dispatch)=>{
+    
+}
 export default navBarPageReducer;

@@ -1,9 +1,9 @@
 import React from "react";
-import prof_style from "./ProfileInfo.module.css";
+//import prof_style from "./ProfileInfo.module.css";
 import Loader from "../../LoaderGif/Loader";
 
 const ProfileInfo = (props) => {
-  if (props.profile == null) {
+  if (props.isLoad) {
     return <Loader />;
   }
   return (

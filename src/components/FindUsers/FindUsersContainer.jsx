@@ -1,8 +1,18 @@
 
+import { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { actionCreatorSetToggleIsFollow, actionCreatorFollow, actionCreatorSetAllUsers, actionCreatorSetCount, actionCreatorSetCountPage, actionCreatorSetToggleIsFetching, actionCreatorSetUsers, actionCreatorUnfollow } from '../../redux/findUser-reducer';
+import { actionCreatorSetToggleIsFollow, actionCreatorFollow, setUsersThunkCreator, actionCreatorSetCount, actionCreatorSetCountPage, actionCreatorUnfollow } from '../../redux/findUser-reducer';
 import FindUsers from './FindUsers';
 
+
+function FindUsersContainer(props){   
+    useEffect(()=>{
+        if(props)    
+        props.setUsersThunkCreator(props.countPage,props.count)
+    },[ props.countPage, props.count ])
+    
+    return <FindUsers {...props}/> 
+}
 let mapStateToProps = (state) => {
     
     return {
@@ -17,11 +27,12 @@ let mapStateToProps = (state) => {
 
 export default connect(mapStateToProps,{
     toggleIsFollow:actionCreatorSetToggleIsFollow,
-    toggleIsFetching:actionCreatorSetToggleIsFetching,
+    //toggleIsFetching:actionCreatorSetToggleIsFetching,
     follow:actionCreatorFollow,
     unFollow:actionCreatorUnfollow,
-    setUsers:actionCreatorSetUsers,
+    //setUsers:actionCreatorSetUsers,
     setCount:actionCreatorSetCount,
     setCountPage:actionCreatorSetCountPage,
-    setAllUsers:actionCreatorSetAllUsers,
-} )(FindUsers);
+    //setAllUsers:actionCreatorSetAllUsers,
+    setUsersThunkCreator,
+} )(FindUsersContainer);

@@ -20,10 +20,10 @@ const Navbar = (props) => {
             <NavLink to='/news'> News</NavLink> 
         </div>
         <div>
-            <a> Music</a> 
+            <a href='#'> Music</a> 
         </div>
         <div>
-            <a> Settings</a> 
+            <a href='#'> Settings</a> 
         </div>
         <div style={{marginTop: 30 + 'px'}}>
             <NavLink to='/find_users'>Find Users</NavLink>
