@@ -3,8 +3,8 @@ import my_posts_style from "./MyPosts.module.css";
 import Post from "./Post/Post";
 
 const MyPosts = (props) => {
-  let arrPost = props.posts.map((el) => (
-    <Post post={el.post} likes={el.likes} key={el.id} />
+  let arrPost = props.posts.map((el,key=el.id) => (
+    <Post post={el.post} likes={el.likes} key={key} />
   ));
   let newText = React.createRef();
 
@@ -29,7 +29,7 @@ const MyPosts = (props) => {
           onChange={upNewTextPost}
           value={props.newTextPost}
         />
-        <button onClick={newPost}>Add Post</button>
+        <button onClick={props.newTextPost ? newPost : ()=>alert('пустой текст') }>Add Post</button>
       </div>
       <div className={my_posts_style.posts}>{arrPost}</div>
     </div>

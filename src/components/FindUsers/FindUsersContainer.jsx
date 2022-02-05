@@ -1,6 +1,6 @@
-import React from 'react';
+
 import { connect } from 'react-redux';
-import { actionCreatorFollow, actionCreatorSetAllUsers, actionCreatorSetCount, actionCreatorSetCountPage, actionCreatorSetToggleIsFetching, actionCreatorSetUsers, actionCreatorUnfollow } from '../../redux/findUser-reducer';
+import { actionCreatorSetToggleIsFollow, actionCreatorFollow, actionCreatorSetAllUsers, actionCreatorSetCount, actionCreatorSetCountPage, actionCreatorSetToggleIsFetching, actionCreatorSetUsers, actionCreatorUnfollow } from '../../redux/findUser-reducer';
 import FindUsers from './FindUsers';
 
 let mapStateToProps = (state) => {
@@ -11,11 +11,12 @@ let mapStateToProps = (state) => {
         allUsers: state.findUsersPage.allUsers,
         countPage: state.findUsersPage.countPage,
         isFetching: state.findUsersPage.isFetching,
-        selectPage: state.findUsersPage.selectPage,
+        isFollow: state.findUsersPage.isToggleFollow,
     }
 }
 
 export default connect(mapStateToProps,{
+    toggleIsFollow:actionCreatorSetToggleIsFollow,
     toggleIsFetching:actionCreatorSetToggleIsFetching,
     follow:actionCreatorFollow,
     unFollow:actionCreatorUnfollow,

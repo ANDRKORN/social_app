@@ -19,8 +19,7 @@ class Dialog extends React.Component{
 
    let arrDialogsItems = this.props.dialogsPage.dialogItems.map((el) => <DialogsItems name={el.name} key={el.id} />);
     let arrMessegeItems = this.props.dialogsPage.messegeItems.map((el) => <DialogsMessegs messege={el.messege} key={el.id} />);
-    console.log(this.props)
-    debugger
+ 
     return(
      <div className={dialogs_style.dialogs_block}>
       <div className={dialogs_style.dialogs_block__items}>

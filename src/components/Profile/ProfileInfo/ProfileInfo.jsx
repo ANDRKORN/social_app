@@ -6,27 +6,19 @@ const ProfileInfo = (props) => {
   if (props.profile == null) {
     return <Loader />;
   }
-  console.log(props)
   return (
-    <div style={{marginLeft: 20 + 'px'}}>
-      <img
-        alt=""
-        src="https://images.pexels.com/photos/248797/pexels-photo-248797.jpeg?auto=compress&cs=tinysrgb&h=350"
-      />
+    <div style={{ marginLeft: 20 + "px" }}>
       <div>
-        <img src={props.profile.photos.large} alt="" />
+        <img src={props.profile.photos.large || props.profile.photos.small} alt="" />
       </div>
-      <div style={{margin:20+'px',
-                  backgroundColor:'red'}}>
+      <div style={{ margin: 20 + "px", backgroundColor: "green" }}>
         {props.profile.aboutMe}
       </div>
-      <div style={{margin:20+'px',
-                  backgroundColor:'red'}}>
+      <div style={{ margin: 20 + "px", backgroundColor: "green" }}>
         {props.profile.fullName}
       </div>
-      <div style={{margin:20+'px',
-                  backgroundColor:'red'}}>
-        
+      <div style={{ margin: 20 + "px", backgroundColor: "green" }}>
+        {}
       </div>
     </div>
   );

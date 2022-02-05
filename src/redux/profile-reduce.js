@@ -1,6 +1,7 @@
 const ADD_POST = 'ADD-POST';
 const UPDATE_TEXT_NEW_POST = 'UPDATE-TEXT-NEW-POST';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
+
 let initialState = {
   profile:null,
   textPost: '',
