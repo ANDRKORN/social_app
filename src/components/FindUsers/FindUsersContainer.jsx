@@ -1,7 +1,7 @@
 
 import { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { actionCreatorSetToggleIsFollow, actionCreatorFollow, setUsersThunkCreator, actionCreatorSetCount, actionCreatorSetCountPage, actionCreatorUnfollow } from '../../redux/findUser-reducer';
+import { actionCreatorSetToggleIsFetching,actionCreatorSetAllUsers,actionCreatorSetUsers, followThunkCretor,unfollowThunkCretor, setUsersThunkCreator, actionCreatorSetCount, actionCreatorSetCountPage } from '../../redux/findUser-reducer';
 import FindUsers from './FindUsers';
 
 
@@ -26,13 +26,12 @@ let mapStateToProps = (state) => {
 }
 
 export default connect(mapStateToProps,{
-    toggleIsFollow:actionCreatorSetToggleIsFollow,
-    //toggleIsFetching:actionCreatorSetToggleIsFetching,
-    follow:actionCreatorFollow,
-    unFollow:actionCreatorUnfollow,
-    //setUsers:actionCreatorSetUsers,
+    followThunkCretor,
+    unfollowThunkCretor,
+    toggleIsFetching:actionCreatorSetToggleIsFetching,    
+    setUsers:actionCreatorSetUsers,
     setCount:actionCreatorSetCount,
     setCountPage:actionCreatorSetCountPage,
-    //setAllUsers:actionCreatorSetAllUsers,
+    setAllUsers:actionCreatorSetAllUsers,
     setUsersThunkCreator,
 } )(FindUsersContainer);

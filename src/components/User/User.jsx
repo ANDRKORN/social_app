@@ -5,7 +5,6 @@ import { usersAPI } from "../../api/api";
 import { useState } from "react";
 
 const User = (props) => {
-  console.log(props)
   const [followed, setState] = useState(props.followed)
   return (
     <div className={style_find_users.user_block}>
@@ -16,29 +15,16 @@ const User = (props) => {
         {followed ? (
           <button disabled={props.isFollow.some(el=>el===props.id)}
             onClick={() => {                   
-              props.toggleIsFollow(props.id)                    
-              usersAPI.UnFollow(props.id).then((response) => {              
-                  if (response.data.resultCode === 0) {
-                    props.unfollow(props.id);
-                  }                  
-                  props.toggleIsFollow(props.id)
-                  setState(false)
-                });
-            }}
-          >
+              props.unfollowThunkCretor(props.id)
+              setState(false)       
+            }}>
             follow
           </button>
         ) : (
           <button disabled={props.isFollow.some(el=>el===props.id)}
             onClick={() => {
-              props.toggleIsFollow(props.id)
-              usersAPI.Follow(props.id).then((response) => {                  
-                if (response.data.resultCode === 1) {
-                  props.unFollow(props.id);
-                }
-                props.toggleIsFollow(props.id)
-                setState(true)                
-              });
+              props.followThunkCretor(props.id)
+              setState(true)       
             }}
           >
             unfollow

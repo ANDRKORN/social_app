@@ -11,5 +11,6 @@ export const usersAPI = {
     getUsers :(countPage, count) =>instance.get(`/users?page=${countPage}&count=${count}`).then(response => response.data),
     Follow : (id) => instance.post(`/follow/${id}`),
     UnFollow : (id) => instance.delete(`/follow/${id}`),
-    getInfoUser : (id) => instance.get(`/profile/${id}`)
+    getInfoUser : (id) => instance.get(`/profile/${id}`),
+    auth: ()=>instance.get('/auth/me')
 }

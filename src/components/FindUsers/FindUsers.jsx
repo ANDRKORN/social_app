@@ -13,10 +13,9 @@ class FindUsers extends React.Component {
     let allUsers = this.props.users.map((u) => (
       <User
         key={u.id}
-        toggleIsFollow={this.props.toggleIsFollow}
         isFollow={this.props.isFollow}
-        follow={this.props.follow}
-        unfollow={this.props.unFollow}
+        followThunkCretor={this.props.followThunkCretor}
+        unfollowThunkCretor={this.props.unfollowThunkCretor}
         id={u.id}
         followed={u.followed}
         avatar={

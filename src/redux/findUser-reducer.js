@@ -82,5 +82,24 @@ export const setUsersThunkCreator = (countPage, count) => (dispatch) => {
     });
 }
 
+export const followThunkCretor = (id) => (dispatch) => {
+    dispatch(actionCreatorSetToggleIsFollow(id))
+    usersAPI.Follow(id).then((response) => {
+        if (response.data.resultCode === 1) {
+            dispatch(actionCreatorUnfollow(id));
+        }
+        dispatch(actionCreatorSetToggleIsFollow(id))
+    });
+}
+export const unfollowThunkCretor = (id) => (dispatch) => {
+    dispatch(actionCreatorSetToggleIsFollow(id))
+    usersAPI.UnFollow(id).then((response) => {
+        if (response.data.resultCode === 1) {
+            dispatch(actionCreatorFollow(id));
+        }
+        dispatch(actionCreatorSetToggleIsFollow(id))
+    });
+}
+
 export default findUserPageReducer;
 

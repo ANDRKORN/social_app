@@ -74,7 +74,7 @@ export const actionCreatorSetUserProfile = (profile) => { return { type: SET_USE
 export const actionCreatorIsLoad = (isLoad) => { return { type: IS_LOAD, isLoad } };
 
 export const getUsersThunkCreator = (userId) => (dispatch) => {
-  let userID = 2;
+  let userID = 19045;
   dispatch(actionCreatorIsLoad(true))
   usersAPI.getInfoUser(!userId ? userID : userID = userId).then((respons) => {
     dispatch(actionCreatorSetUserProfile(respons.data));
