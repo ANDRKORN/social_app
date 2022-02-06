@@ -1,14 +1,15 @@
 import { connect } from 'react-redux';
+import { compose } from 'redux';
+import { AuthRedirectComponent } from '../../HOC/AuthRedirect';
 import { actionCreatorAddMessage, actionCreatorUpdateTextMessage } from '../../redux/dialogs-reduce';
 import Dialog from './Dialogs';
 
-
-
 let mapStateToProps=(state)=>{
   return{
-   dialogsPage:state.dialogsPage,
+   dialogsPage:state.dialogsPage,  
   }
 };
+
 let mapDispachToProps=(dispatch)=>{
   return{
     updateTextMessegeContainer:(textMessage) => {    
@@ -19,7 +20,7 @@ let mapDispachToProps=(dispatch)=>{
     }, 
   }
 }
-
-const DialogsContainer=connect(mapStateToProps,mapDispachToProps)(Dialog);
-
-export default DialogsContainer;
+export default compose(
+  AuthRedirectComponent,
+  connect(mapStateToProps,mapDispachToProps)
+  )(Dialog)

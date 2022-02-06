@@ -1,6 +1,7 @@
 import React from "react";
 //import prof_style from "./ProfileInfo.module.css";
 import Loader from "../../LoaderGif/Loader";
+import ProfileStatus from '../ProfilStatus/ProfileStatus'
 
 const ProfileInfo = (props) => {
   if (props.isLoad) {
@@ -18,7 +19,7 @@ const ProfileInfo = (props) => {
         {props.profile.fullName}
       </div>
       <div style={{ margin: 20 + "px", backgroundColor: "green" }}>
-        {}
+        <ProfileStatus/>
       </div>
     </div>
   );
