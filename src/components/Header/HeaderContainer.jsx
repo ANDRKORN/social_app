@@ -1,4 +1,3 @@
-import axios from 'axios';
 import React from 'react';
 import { connect } from 'react-redux';
 import { authThunkCreator } from '../../redux/auth-reducer';
@@ -16,7 +15,6 @@ class HeaderContainer extends React.Component{
 }
 const mapStateToPrps=(state)=>({
     isAuth:state.authUser.isAuth,
-    login:state.authUser.login
-    
+    login:state.authUser.login    
 });
 export default connect(mapStateToPrps,{authThunkCreator})(HeaderContainer);

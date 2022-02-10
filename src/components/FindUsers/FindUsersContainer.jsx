@@ -9,7 +9,7 @@ function FindUsersContainer(props){
     useEffect(()=>{
         if(props)    
         props.setUsersThunkCreator(props.countPage,props.count)
-    },[ props.countPage, props.count ])
+    },[ props ])
     
     return <FindUsers {...props}/> 
 }

@@ -1,21 +1,34 @@
 import React from 'react';
 import dialogs_style from './Dialogs.module.css'
-import DialogsMessegs from './DialogsMessegs/DialogsMessegs'
+import DialogsMasseges from './DialogsMessegs/DialogsMessegs'
 import DialogsItems from './DialogsItems/DialogsItems'
+import { reduxForm, Field } from "redux-form";
+
+const MassegeForm = (props) => {
+  return (
+    <form onSubmit = {props.handleSubmit} action="">
+      <div>
+        <Field placeholder="Masseges" name="masseges" component={"input"} />
+      </div>      
+      <div>
+      <button type="submit" >Submit</button>
+      </div>
+    </form>
+  );
+};
+
+const MassegeReduxForm = reduxForm({ form: "masseges" })(MassegeForm);
+
 
 class Dialog extends React.Component{  
-  newTextMessege = React.createRef();
- updateTextMessege = () => {
-    let textMessage = this.newTextMessege.current.value
-    this.props.updateTextMessegeContainer(textMessage);   
-  }
-  addMessage = () => {
-    this.props.addMessageContainer();
+ 
+  addMassege = (FormData) => {
+    this.props.addMessageContainer(FormData.masseges);
   }
   
   render(){
     let arrDialogsItems = this.props.dialogsPage.dialogItems.map((el) => <DialogsItems name={el.name} key={el.id} />);
-    let arrMessegeItems = this.props.dialogsPage.messegeItems.map((el) => <DialogsMessegs messege={el.messege} key={el.id} />);
+    let arrMessegeItems = this.props.dialogsPage.massegeItems.map((el) => <DialogsMasseges massege={el.massege} key={el.id} />);
     return(
      <div className={dialogs_style.dialogs_block}>
       <div className={dialogs_style.dialogs_block__items}>
@@ -26,15 +39,7 @@ class Dialog extends React.Component{
           {arrMessegeItems}
         </div>
         <div>
-          <div>
-            <textarea name="" id="" cols="15" rows="1"
-             ref={this.newTextMessege} 
-            onChange={this.updateTextMessege} 
-            value={this.props.dialogsPage.textMessage} />
-          </div>
-          <div>
-            <button onClick={this.addMessage}>add messege</button>
-          </div>
+        <MassegeReduxForm onSubmit={this.addMassege}/>
         </div>
       </div>
     </div>

@@ -1,22 +1,21 @@
-const UPDATE_TEXT_MESSAGE = 'UDATE-TEXT-MESSAGE';
+
 const ADD_MESSAGE = 'ADD-MESSAGE';
-let initialState = {
-  textMessage: '',
-  messegeItems: [
+let initialState = { 
+  massegeItems: [
     {
-      messege: 'hi',
+      massege: 'hi',
       id: 0
     },
     {
-      messege: 'how are you',
+      massege: 'how are you',
       id: 1
     },
     {
-      messege: 'norm',
+      massege: 'norm',
       id: 2
     },
     {
-      messege: 'yes',
+      massege: 'yes',
       id: 3
     },
   ],
@@ -41,31 +40,21 @@ let initialState = {
 };
 const dialogsPageReducer = (state = initialState, action) => {
   switch (action.type) {
-    case UPDATE_TEXT_MESSAGE:
-      return{
-        ...state,
-        textMessage: action.newTextMessage,
-      };
-       
-    case ADD_MESSAGE:       
-      let textMessage=state.textMessage;
-      debugger
+    case ADD_MESSAGE:
       return  {
         ...state,
-        messegeItems: [                  
-          ...state.messegeItems ,
+        massegeItems: [                  
+          ...state.massegeItems ,
           {
-            messege: textMessage,
-            id: state.messegeItems.length,
+            massege: action.textMassage,
+            id: state.massegeItems.length,
           }
         ],
-        textMessage:'',
       };
     default:
       return state;
   }
 };
-export const actionCreatorUpdateTextMessage = (text) => { return { type: UPDATE_TEXT_MESSAGE, newTextMessage: text } }
-export const actionCreatorAddMessage = () => { return { type: ADD_MESSAGE } }
+export const actionCreatorAddMessage = (textMassage) => { return { type: ADD_MESSAGE, textMassage } }
 
 export default dialogsPageReducer;

@@ -5,6 +5,7 @@ import findUserPageReducer from "./findUser-reducer"
 import authReducer from "./auth-reducer";
 import navBarPageReducer from "./navBar-reducer";
 import thunk from 'redux-thunk'
+import { reducer as formReducer} from 'redux-form'
 
 let redusers = combineReducers(
     {
@@ -12,7 +13,8 @@ let redusers = combineReducers(
         dialogsPage: dialogsPageReducer,
         findUsersPage: findUserPageReducer,
         authUser: authReducer,
-        navbarPage: navBarPageReducer,            
+        navbarPage: navBarPageReducer, 
+        form: formReducer           
     }
 );
 

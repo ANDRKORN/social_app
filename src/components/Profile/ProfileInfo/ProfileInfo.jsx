@@ -19,7 +19,7 @@ const ProfileInfo = (props) => {
         {props.profile.fullName}
       </div>
       <div style={{ margin: 20 + "px", backgroundColor: "green" }}>
-        <ProfileStatus/>
+        <ProfileStatus status={props.status} updateUsersStatusThunkCreator={props.updateUsersStatusThunkCreator}/>
       </div>
     </div>
   );

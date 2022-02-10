@@ -1,7 +1,6 @@
 import React from "react";
 import style_find_users from "./User.module.css";
 import { NavLink } from "react-router-dom";
-import { usersAPI } from "../../api/api";
 import { useState } from "react";
 
 const User = (props) => {
