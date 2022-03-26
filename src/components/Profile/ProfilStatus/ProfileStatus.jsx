@@ -1,19 +1,23 @@
+import { useEffect } from "react";
 import { React, useState } from "react";
 import prof_style from "./Profile.module.css";
 
-const ProfileStatus = (props) => {
-  console.log(props);
-  let [showInput, setState] = useState(false);
-  let [status, setStatus] = useState(props.status || "--");
+const ProfileStatus = (props) => {  
+  useEffect( () => {
+    setStatus(props.status)
+  }, [props])
+
+  let [showInput, setShowInput] = useState(false);
+  let [status, setStatus] = useState(props.status);
   return (
     <>
       <div className={prof_style.content}>
         <span
           onClick={() => {
-            setState(!showInput);
+            setShowInput(!showInput);
           }}
         >
-          {status}
+          {status || "no status"}
         </span>
       </div>
       {showInput ? (
@@ -27,7 +31,7 @@ const ProfileStatus = (props) => {
             }}
             onBlur={() => {
               props.updateUsersStatusThunkCreator(status);
-              setState(!showInput);
+              setShowInput(!showInput);
             }}
           />
         </div>

@@ -2,6 +2,7 @@
 import { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { actionCreatorSetToggleIsFetching,actionCreatorSetAllUsers,actionCreatorSetUsers, followThunkCretor,unfollowThunkCretor, setUsersThunkCreator, actionCreatorSetCount, actionCreatorSetCountPage } from '../../redux/findUser-reducer';
+import { getAllUsers, getCount, getCountPage, getUser } from '../../selectors/selector';
 import FindUsers from './FindUsers';
 
 
@@ -9,17 +10,16 @@ function FindUsersContainer(props){
     useEffect(()=>{
         if(props)    
         props.setUsersThunkCreator(props.countPage,props.count)
-    },[ props ])
+    },[ props.countPage, props.count ])
     
     return <FindUsers {...props}/> 
 }
-let mapStateToProps = (state) => {
-    
+let mapStateToProps = (state) => {    
     return {
-        users: state.findUsersPage.users,
-        count: state.findUsersPage.count,
-        allUsers: state.findUsersPage.allUsers,
-        countPage: state.findUsersPage.countPage,
+        users: getUser(state),
+        count: getCount(state),
+        allUsers: getAllUsers(state),
+        countPage: getCountPage(state),
         isFetching: state.findUsersPage.isFetching,
         isFollow: state.findUsersPage.isToggleFollow,
     }

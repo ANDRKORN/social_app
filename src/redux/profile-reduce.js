@@ -4,6 +4,7 @@ const ADD_POST = 'ADD-POST';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
 const IS_LOAD = 'IS_LOAD';
 const SET_STATUS = `SET_STATUS`;
+const SET_PHOTOS = `SET_PHOTOS`;
 
 let initialState = {
   profile: null,
@@ -49,7 +50,7 @@ const profilePageReducer = (state = initialState, action) => {
           ...state.posts,
         ],
         textPost: '',
-      };    
+      };
     case SET_USER_PROFILE:
       return {
         ...state, profile: action.profile
@@ -59,9 +60,12 @@ const profilePageReducer = (state = initialState, action) => {
         ...state, isLoad: action.isLoad
       }
     case SET_STATUS:
-      console.log(action.status)
       return {
         ...state, status: action.status
+      }
+    case SET_PHOTOS:
+      return {
+        ...state, profile: { ...state.profile, photos: action.photo, }
       }
     default:
 
@@ -72,6 +76,7 @@ export const actionCreatorAddPost = (textPost) => { return { type: ADD_POST, tex
 export const actionCreatorSetUserProfile = (profile) => { return { type: SET_USER_PROFILE, profile } }
 export const actionCreatorIsLoad = (isLoad) => { return { type: IS_LOAD, isLoad } };
 export const actionCreatorSetUserStatus = (status) => { return { type: SET_STATUS, status } }
+export const actionCreatorSetUserPhoto = (photo) => { return { type: SET_PHOTOS, photo } }
 
 export const getUsersThunkCreator = (userId) => (dispatch) => {
   let userID = 19045;
@@ -83,18 +88,24 @@ export const getUsersThunkCreator = (userId) => (dispatch) => {
 }
 
 export const getUsersStatusThunkCreator = (userID) => (dispatch) => {
-  let userId = 19045;
-  profileAPI.getStatusUserId(!userID ? userId : userId = userID).then((respons) => {
+  profileAPI.getStatusUserId(userID).then((respons) => {
     dispatch(actionCreatorSetUserStatus(respons.data))
   });
 }
 export const updateUsersStatusThunkCreator = (status) => (dispatch) => {
   profileAPI.updateStatus(status).then((res) => {
-    if(res.data.resultCode === 0){
+    if (res.data.resultCode === 0) {
       dispatch(actionCreatorSetUserStatus(status))
     }
   })
 }
 
+export const updatePhotoThunkCreator = (photo) => (dispatch) => {
+  profileAPI.updatePhoto(photo).then((res) => {
+    if (res.data.resultCode === 0) {
+      dispatch(actionCreatorSetUserPhoto(res.data.data.photos))
+    }
+  })
+}
 
 export default profilePageReducer;

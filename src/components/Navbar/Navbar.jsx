@@ -2,14 +2,8 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import nav_style from './Navbar.module.css';
 import FriendsBar from './FriendsBar/FriendsBar';
-import { useEffect } from 'react';
-import { usersAPI } from '../../api/api';
-
 
 const Navbar = (props) => {
-    useEffect(() => {
-        usersAPI.getUsers(1, 3).then((data) => {props.setUsers(data.items);});
-      });
     return <nav className={nav_style.nav}>
         <div>
             <NavLink to='/profile'>Profile</NavLink> 

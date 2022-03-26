@@ -1,0 +1,16 @@
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.form__items {
+    display: flex;
+    gap: 10px;
+}
+
+.form__password_btn {
+    position: absolute;
+    right: 50px;
+    transform: translateY(100%);
+}

@@ -4,7 +4,6 @@ import styles from "./Paginator.module.css";
 function Paginator(props) { 
     
     const [count, setCount] = useState(1)
-
     let pagesCount = Math.ceil(props.allRecords / props.numberOfRecords);
     let max = 8;         
     let pages = [];

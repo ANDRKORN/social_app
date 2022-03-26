@@ -7,7 +7,7 @@ const PostForm = (props) => {
   return (
     <form onSubmit = {props.handleSubmit} action="">
       <div>
-        <Field placeholder="text post" name='post_text' component={"input"} />
+        <Field placeholder="text post" name='post_text' component={"input"}  />
       </div>      
       <div>
       <button type="submit" >Post</button>
@@ -33,7 +33,7 @@ const MyPosts = (props) => {
       <div>
       <PostReduxForm onSubmit={newPost}/>
       </div>
-      <div className={my_posts_style.posts}>{arrPost}</div>
+      <div className={my_posts_style.posts} style={{}}>{arrPost}</div>
     </div>
   );
 };

@@ -1,0 +1,75 @@
+.login {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    background-color: #0D1638;
+    color: white;
+}
+
+.form {
+    width: 386px;
+}
+
+.form__label {
+    margin: 0 0 44px;
+}
+
+.form__input {
+    width: 100%;
+    height: 64px;
+    padding: 21px;
+    color: white;
+    border: 1px solid #06792D;
+    border-radius: 5px;
+    background-color: #0D1638;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 100px #0D1638 inset !important;
+    background-color: #0D1638 !important; 
+    -webkit-text-fill-color: white !important;
+}
+
+.form__checkbox {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.form__btn_submit {
+    width: 100%;
+    height: 64px;
+    background: #FFB800;
+    border-radius: 5px;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 36px;
+    line-height: 42px;
+}
+
+.login__link {
+    margin-top: 44px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.login__link a {
+    color: white;
+}
+
+.login__link a:hover {
+    color: #FFB800;
+}
+
+.login__img {
+    margin-top: 44px;
+}
