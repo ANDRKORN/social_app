@@ -1,0 +1,10 @@
+.input__password_btn {
+    position: absolute;
+    right: 15%;
+    transform: translateY(100%);
+}
+
+.error{
+    border: 1px solid red;
+    position: absolute;
+}

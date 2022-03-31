@@ -9,6 +9,10 @@
     color: white;
 }
 
+.login__title{
+    width: 70%;
+}
+
 .form {
     width: 386px;
 }
@@ -22,7 +26,7 @@
     height: 64px;
     padding: 21px;
     color: white;
-    border: 1px solid #06792D;
+    border: 1px solid #FFB800;;
     border-radius: 5px;
     background-color: #0D1638;
 }

@@ -31,7 +31,6 @@ const App = (props) => {
           render={() => <DialogsContainer />} />
         <Route path='/find_users'
           render={() => <FindUsersContainer />} />
-
       </div>
     </>
     );
@@ -47,6 +46,7 @@ const AppContainer = compose(
 )(App);
 
 const MainApp = (props) => {
+  
   return <>
     <BrowserRouter>
       <Provider store={store}>

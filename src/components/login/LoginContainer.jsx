@@ -1,14 +1,13 @@
 import Login from "./Login.jsx";
 import { connect } from "react-redux";
-import { LoginThunkCreator} from "../../redux/auth-reducer";
+import { LoginThunkCreator, authThunkCreator} from "../../redux/auth-reducer";
 import { compose } from "redux"; 
 
 const mapStateToPrps=(state)=>({
-  isAuth:state.authUser.isAuth,  
+  isAuth:state.authUser.isAuth,
+  login:state.authUser.login    
 });
 
 export default compose(
-  connect ( mapStateToPrps, {LoginThunkCreator})
+  connect ( mapStateToPrps, {LoginThunkCreator, authThunkCreator})
 )(Login)
-
-

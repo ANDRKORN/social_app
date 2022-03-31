@@ -1,28 +1,40 @@
 import { Field, reduxForm } from "redux-form";
-import { React, useEffect, useState } from "react";
+import { React } from "react";
 import s from './FormFields.module.css';
-import show from "../accessories/show_psw.svg";
-import hiden from "../accessories/hiden_psw.svg";
+import Button from '../main_components/element_Fields/Button'
+import Input from '../main_components/element_Fields/Input/Input'
+import submit from "./submit/submit";
+
+const required = value => value ? undefined : 'Обязательное поле'
+const maxLength = max => value =>
+  value && value.length > max ? `Must be ${max} characters or less` : undefined
+const minLength = min => value =>
+  value && value.length < min ? `Минимальная длнина пороля ${min}` : undefined  
+const email = value =>{
+  return value && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value) ?
+    'Некорректный email' : undefined }
 
 const FormFields = (props) => {
-  const [showPassword, setShowPassword] = useState(false)
-  const imageList = [show, hiden]
-  useEffect(() => {
-    imageList.forEach((image) => {
-      new Image().src = image
-    });
-  })
-
-  const field = props.field || [];
-  const itemForm = field.map((el, i) => {
+  const field = props.field || [];    
+  const itemForm = field.map((el, i) => {    
+    const val = []
+    if (el.email) {
+      val.push(email)
+    }
+    if (el.required) {
+      val.push(required)
+    }
     switch (el.visible) {
       case 'button': {
-        el.component = () => <button
-          type={el.type}
-          className={el.className}
-        >
-          {el.textBtn}
-        </button>
+        el.component = ({ input, label, type, meta: { touched, error }, ...props }) => <Button el={el} data={{ input, label, type, meta: { touched, error }, ...props }} />
+        break;
+      }
+      case 'input': {
+        el.component = (props) => <Input el={el} data={props} />
+        break;
+      }
+      case 'checkbox': {
+        el.component = ({ input, label, type, meta: { touched, error } }) => <Input el={el} data={{ input, label, type, meta: { touched, error } }} />
         break;
       }
       default: {
@@ -36,23 +48,40 @@ const FormFields = (props) => {
         {el.label}
       </label>
         : <></>}
-      <div style={el.visible === 'button' ? { width: '100%' } : { position: 'relative'}}>
-        <Field type={el.type === 'password' ? showPassword ? 'text' : 'password' : el.type}
-          props={{ className: el.className }}
-          placeholder={el.placeholder}
-          name={el.name}
-          component={el.component}
-        />
-        {el.showBtn ? <img className={s.form__password_btn} src={showPassword ? imageList[1] : imageList[0]} alt="" width={'40px'} onClick={() => { setShowPassword(!showPassword) }} /> : <></>}
-      </div>
+      <Field
+        props={{ className: el.className }}
+        placeholder={el.placeholder}
+        name={el.name}
+        component={el.component}
+        validate={val}
+      />
     </div>
   })
-  return <div>
+  return <div style={{ position: 'relative' }}>
     {props.labelForm ? <h3 className={props.classLabelForm}>{props.labelForm}</h3>
       : <></>}
-    <form onSubmit={props.handleSubmit} action="" className={props.classNameForm || s.form}>
+    <form onSubmit={props.handleSubmit(submit)} action="" className={props.classNameForm || s.form}>
       {itemForm}
     </form>
+    {props.error ? <div
+    style={{
+      position: 'absolute',
+      margin: '5px 10%',
+      color: 'orangered',
+      height: '10%',
+      width: '80%',
+      border: '2px solid rgb(255, 184, 0)',
+    }}
+  >
+    <span style={{
+      display: 'block',
+      margin: '0 auto',
+      width: 'fit-content',
+      letterSpacing: '1px',
+      lineHeight: '200%',
+    }}>{props.error}</span>
+  </div>
+    : <></>}    
   </div>
 };
 export default reduxForm()(FormFields);
